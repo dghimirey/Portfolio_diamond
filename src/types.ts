@@ -33,7 +33,7 @@ export interface WorkExperience {
 
 export interface SkillSet {
   frontend: string[];
-  hardware: string[];
+  backend: string[];
   tools: string[];
 }
 

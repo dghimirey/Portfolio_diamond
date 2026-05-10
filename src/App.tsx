@@ -17,6 +17,7 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Footer from './components/Footer';
 import Resume from './components/Resume';
+import { portfolioData } from './data/portfolio';
 
 export default function App() {
   const [view, setView] = useState<'portfolio' | 'resume'>('portfolio');
@@ -73,7 +74,7 @@ export default function App() {
                    </p>
                    <motion.div className="flex flex-col sm:flex-row gap-4 mt-10">
                      <motion.a 
-                       href="mailto:shisir450@gmail.com"
+                       href={`mailto:${portfolioData.personal.email}`}
                        whileHover={{ scale: 1.05 }}
                        whileTap={{ scale: 0.95 }}
                        className="px-12 py-5 bg-white text-black rounded-full font-black text-sm tracking-widest uppercase shadow-2xl shadow-white/10"

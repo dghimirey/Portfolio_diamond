@@ -91,9 +91,9 @@ export default function Resume({ onBack }: ResumeProps) {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-[10px] font-black uppercase text-zinc-900 mb-2">Hardware</h3>
+                  <h3 className="text-[10px] font-black uppercase text-zinc-900 mb-2">Backend</h3>
                   <div className="flex flex-wrap gap-1">
-                    {portfolioData.skills.hardware.map(s => (
+                    {portfolioData.skills.backend.map(s => (
                       <span key={s} className="px-2 py-1 bg-zinc-100 text-[10px] font-bold rounded">{s}</span>
                     ))}
                   </div>

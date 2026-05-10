@@ -34,7 +34,7 @@ export default function Skills() {
           <h2 className="text-4xl sm:text-6xl font-serif italic font-black tracking-tighter">My Technical <span className="text-zinc-800">Arsenal.</span></h2>
         </div>
         <p className="text-zinc-500 text-sm max-w-xs font-medium leading-relaxed">
-          Bridging the gap between high-level frontend interfaces and low-level hardware performance.
+          Bridging the gap between creative frontend interfaces and robust backend logic.
         </p>
       </div>
 
@@ -60,14 +60,14 @@ export default function Skills() {
           </div>
         </motion.div>
 
-        {/* Hardware Skills */}
+        {/* Backend Skills */}
         <motion.div variants={item} className="bg-zinc-900/50 rounded-[2rem] border border-white/10 p-10 group hover:border-cyan-500/30 transition-colors">
           <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8">
             <Cpu className="w-6 h-6 text-blue-500" />
           </div>
-          <h3 className="text-2xl font-bold mb-6">Hardware & Systems</h3>
+          <h3 className="text-2xl font-bold mb-6">Backend Development</h3>
           <div className="flex flex-wrap gap-2">
-            {portfolioData.skills.hardware.map(skill => (
+            {portfolioData.skills.backend.map(skill => (
               <span key={skill} className="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-xs font-mono text-zinc-400 group-hover:text-white transition-colors uppercase tracking-wider font-bold">
                 {skill}
               </span>
