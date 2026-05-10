@@ -27,40 +27,40 @@ export const portfolioData: PortfolioData = {
     bio: "Student at Bhairahawa Multiple Campus. Combining software intelligence with hardware expertise to build meaningful digital experiences.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&auto=format&fit=crop", // Placeholder avatar
     email: "shisir450@gmail.com",
-    vibe: "Chess Learner • Vibe Coder • Art Enthusiast"
+    vibe: "Chess Player • Vibe Coder • Hardware Enthusiast"
   },
   
   socials: [
-    { name: "GitHub", url: "https://github.com/dghimirey", icon: Github },
+    { name: "GitHub", url: "https://github.com/diamondghimire", icon: Github },
     { name: "LinkedIn", url: "https://linkedin.com/in/diamondghimire", icon: Linkedin },
-    { name: "Email", url: "mailto:diamondghimire4141@gmail.com", icon: Mail },
+    { name: "Email", url: "mailto:shisir450@gmail.com", icon: Mail },
   ],
 
   projects: [
     {
       id: "edvance",
       title: "edVance",
-      description: "A SMS with advanced analytics and student performance tracking.",
+      description: "An Intelligent School Management System featuring advanced analytics, automated grading, and student performance tracking.",
       tech: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
-      link: "https://digitalschoolsystem.vercel.app/",
-      github: "https://github.com:dghimirey/",
+      link: "#",
+      github: "#",
       image: "https://images.unsplash.com/photo-1501503060800-5fa8f15b11bb?q=80&w=1200&auto=format&fit=crop",
       featured: true
     },
     {
-      id: "FitBeat",
-      title: "FitBeat",
-      description: "A website to track daily routines and getting rewards.",
+      id: "ui-experiments",
+      title: "Frontend UI Labs",
+      description: "A collection of experimental UI components focusing on Neo-brutalism and Glassmorphism aesthetics.",
       tech: ["React", "Framer Motion", "Tailwind"],
-      link: "https://fit-beat.vercel.app/",
-      github: "https://github.com/dghimirey",
+      link: "#",
+      github: "#",
       image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
       featured: true
     },
     {
-      id: "Physics",
-      title: "Physics Simulator",
-      description: "A website to simulate physics related things.",
+      id: "hardware-troubleshooter",
+      title: "Hardware Diagnostics Kit",
+      description: "A digital companion for hardware troubleshooting and system performance monitoring.",
       tech: ["Vanilla JS", "Shell Scripting", "Hardware APIs"],
       link: "#",
       github: "#",
@@ -70,9 +70,9 @@ export const portfolioData: PortfolioData = {
   ],
 
   skills: {
-    frontend: ["HTML", "CSS", "React", "Next.js", "Vanilla JS"],
-    backend: ["Node.js", "Express.js"],
-    tools: ["Git", "Vite", "Firebase", "VS Code"]
+    frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vanilla JS"],
+    hardware: ["PC Troubleshooting", "Network Setup", "Component Repair", "BIOS Config"],
+    tools: ["Git", "Vite", "Firebase", "Postman", "Linux", "Docker", "VS Code"]
   },
 
   education: [
@@ -85,10 +85,10 @@ export const portfolioData: PortfolioData = {
     },
     {
       degree: "Higher Secondary Education (+2 Science)",
-      institution: "Lumbini Gyan Niketan Secondary School",
+      institution: "Haraiya Secondary School",
       location: "Kanchan, Rupandehi",
-      period: "2020 - 2022",
-      details: "Studied Physics, Chemistry, Biology and Maths."
+      period: "2021 - 2023",
+      details: "Specialized in Computer Science and Physics."
     }
   ],
 
@@ -96,14 +96,20 @@ export const portfolioData: PortfolioData = {
     {
       role: "Computer Operator",
       company: "Haraiya Secondary School",
-      period: "2022 - Present",
-      description: "Managing school digital records and optimizing administrative workflows."
+      period: "Present",
+      description: "Managing school digital records, troubleshooting hardware, and optimizing administrative workflows."
     },
+    {
+      role: "BSc. CSIT Student",
+      company: "Bhairahawa Multiple Campus",
+      period: "2023 - Present",
+      description: "Focusing on Computer Science and Information Technology fundamentals."
+    }
   ],
 
   interests: [
-    { name: "Chess", icon: Trophy, description: "Refreshment." },
+    { name: "Chess", icon: Trophy, description: "Strategy and critical thinking." },
     { name: "Vibe Coding", icon: Gamepad2, description: "Creating immersive digital atmospheres." },
-    { name: "Designing", icon: Cpu, description: "Passionate about creative stuffs." }
+    { name: "Hardware", icon: Cpu, description: "Understanding the machine at its core." }
   ]
 };
