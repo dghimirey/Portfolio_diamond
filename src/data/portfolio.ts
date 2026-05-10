@@ -27,7 +27,7 @@ export const portfolioData: PortfolioData = {
     bio: "Student at Bhairahawa Multiple Campus. Combining software intelligence with hardware expertise to build meaningful digital experiences.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&h=256&auto=format&fit=crop", // Placeholder avatar
     email: "shisir450@gmail.com",
-    vibe: "Chess Player • Vibe Coder • Hardware Enthusiast"
+    vibe: "Chess Learner • Vibe Coder • Art Enthusiast"
   },
   
   socials: [
@@ -48,19 +48,19 @@ export const portfolioData: PortfolioData = {
       featured: true
     },
     {
-      id: "ui-experiments",
-      title: "Frontend UI Labs",
-      description: "A collection of experimental UI components focusing on Neo-brutalism and Glassmorphism aesthetics.",
+      id: "FitBeat",
+      title: "FitBeat",
+      description: "A website to track daily routines and getting rewards.",
       tech: ["React", "Framer Motion", "Tailwind"],
-      link: "#",
-      github: "#",
+      link: "https://fit-beat.vercel.app/",
+      github: "https://github.com/dghimirey",
       image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
       featured: true
     },
     {
-      id: "hardware-troubleshooter",
-      title: "Hardware Diagnostics Kit",
-      description: "A digital companion for hardware troubleshooting and system performance monitoring.",
+      id: "Physics",
+      title: "Physics Simulator",
+      description: "A website to simulate physics related things.",
       tech: ["Vanilla JS", "Shell Scripting", "Hardware APIs"],
       link: "#",
       github: "#",
@@ -85,10 +85,10 @@ export const portfolioData: PortfolioData = {
     },
     {
       degree: "Higher Secondary Education (+2 Science)",
-      institution: "Haraiya Secondary School",
+      institution: "Lumbini Gyan Niketan Secondary School",
       location: "Kanchan, Rupandehi",
-      period: "2021 - 2023",
-      details: "Specialized in Computer Science and Physics."
+      period: "2020 - 2022",
+      details: "Physics Chemistry Biology and Maths."
     }
   ],
 
@@ -96,7 +96,7 @@ export const portfolioData: PortfolioData = {
     {
       role: "Computer Operator",
       company: "Haraiya Secondary School",
-      period: "Present",
+      period: "2022 - Present",
       description: "Managing school digital records, troubleshooting hardware, and optimizing administrative workflows."
     },
   ],
@@ -104,6 +104,6 @@ export const portfolioData: PortfolioData = {
   interests: [
     { name: "Chess", icon: Trophy, description: "Strategy and critical thinking." },
     { name: "Vibe Coding", icon: Gamepad2, description: "Creating immersive digital atmospheres." },
-    { name: "Hardware", icon: Cpu, description: "Understanding the machine at its core." }
+    { name: "Drawing", icon: Cpu, description: "Passionate about realistic drawing." }
   ]
 };
