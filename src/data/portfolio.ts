@@ -31,9 +31,9 @@ export const portfolioData: PortfolioData = {
   },
   
   socials: [
-    { name: "GitHub", url: "https://github.com/diamondghimire", icon: Github },
+    { name: "GitHub", url: "https://github.com/dghimirey", icon: Github },
     { name: "LinkedIn", url: "https://linkedin.com/in/diamondghimire", icon: Linkedin },
-    { name: "Email", url: "mailto:shisir450@gmail.com", icon: Mail },
+    { name: "Email", url: "mailto:diamondghimire4141@gmail.com", icon: Mail },
   ],
 
   projects: [
@@ -42,8 +42,8 @@ export const portfolioData: PortfolioData = {
       title: "edVance",
       description: "An Intelligent School Management System featuring advanced analytics, automated grading, and student performance tracking.",
       tech: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
-      link: "#",
-      github: "#",
+      link: "https://digitalschoolsystem.vercel.app/",
+      github: "https://github.com:dghimirey/",
       image: "https://images.unsplash.com/photo-1501503060800-5fa8f15b11bb?q=80&w=1200&auto=format&fit=crop",
       featured: true
     },
@@ -99,12 +99,6 @@ export const portfolioData: PortfolioData = {
       period: "Present",
       description: "Managing school digital records, troubleshooting hardware, and optimizing administrative workflows."
     },
-    {
-      role: "BSc. CSIT Student",
-      company: "Bhairahawa Multiple Campus",
-      period: "2023 - Present",
-      description: "Focusing on Computer Science and Information Technology fundamentals."
-    }
   ],
 
   interests: [
