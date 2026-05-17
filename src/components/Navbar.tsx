@@ -41,7 +41,7 @@ export default function Navbar({ onViewResume }: NavbarProps) {
             ))}
           </nav>
             <a 
-              href="mailto:shisir450@gmail.com"
+              href="mailto:diamondghimire4141@gmail.com"
               className="text-[10px] sm:text-xs bg-zinc-800 text-white px-5 py-2.5 rounded-xl font-bold uppercase tracking-widest hover:bg-zinc-700 transition-all"
             >
               Contact
