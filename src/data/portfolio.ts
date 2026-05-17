@@ -18,7 +18,7 @@ import { PortfolioData } from '../types';
 export const portfolioData: PortfolioData = {
   personal: {
     name: "Diamond Ghimire",
-    role: "Full-Stack Developer & BSc. CSIT Student",
+    role: "Web Developer, Computer Operator & BSc. CSIT Student",
     location: "Rupandehi, Nepal",
     bio: "Student at Bhairahawa Multiple Campus, passionate about building meaningful digital experiences through software development and modern technologies.",
     
@@ -102,29 +102,16 @@ export const portfolioData: PortfolioData = {
     },
 
     {
-      id: "physics-simulator",
-
-      title: "Physics Simulator",
-
-      description:
-        "An interactive web application for simulating physics concepts and experiments in a visual and engaging way.",
-
-      tech: [
-        "Vanilla JavaScript",
-        "Shell Scripting",
-        "Hardware APIs"
-      ],
-
-      link: "#",
-
-      github: "#",
-
-      // Physics / science themed image
-      image:
-        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop",
-
-      featured: false
-    }
+    {
+  id: "haraiya-secondary",
+  title: "Haraiya Secondary School Website",
+  description: "Official school website showcasing academic programs, faculty, facilities, notices, and the school's history of educational excellence since 2024 BS.",
+  tech: ["React", "Vite", "Tailwind CSS"], // Or whatever it's built with
+  link: "https://haraiyasecondary.vercel.app/",
+  github: "#", // Add if source code is available
+  image: "https://images.unsplash.com/...", // Use a relevant image URL
+  featured: true // Or false, as you prefer
+}
   ],
 
   skills: {
