@@ -63,7 +63,7 @@ export default function Resume({ onBack }: ResumeProps) {
               </div>
               <div className="flex items-center gap-2 justify-start md:justify-end">
                 <Globe className="w-4 h-4" />
-                <span>portfolio.diamond.dev</span>
+                <span>diamondghimire.com.np</span>
               </div>
             </div>
           </div>
