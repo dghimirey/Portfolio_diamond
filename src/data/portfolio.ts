@@ -79,8 +79,8 @@ export const portfolioData: PortfolioData = {
   ],
 
   skills: {
-    frontend: ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"],
-    backend: ["Node.js", "Express.js", "Firebase"],
+    frontend: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"],
+    backend: ["Node.js", "Express.js"],
     tools: ["Git", "Vite", "VS Code", "Figma"]
   },
 
@@ -105,7 +105,7 @@ export const portfolioData: PortfolioData = {
     {
       role: "Computer Operator",
       company: "Haraiya Secondary School",
-      period: "2022 - Present",
+      period: "2024 - Present",
       description: "Managing digital school records, maintaining administrative systems, and improving workflow efficiency through technology."
     }
   ],
