@@ -35,7 +35,7 @@
 @layer base {
   /* Improved base styles */
   body {
-    @apply bg-background text-white selection:bg-accent-cyan-glow selection:text-white antialiased;
+    @apply bg-background text-white selection:bg-[--color-accent-cyan-glow] selection:text-white antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     text-rendering: optimizeLegibility;
   }
@@ -160,9 +160,10 @@
     @apply py-section md:py-section-lg;
   }
   
-  /* Grid utilities */
+  /* Grid utilities - FIXED */
   .grid-auto-fit {
-    @apply grid grid-cols-repeat(auto-fit, minmax(280px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
   
   /* Blur utilities */
