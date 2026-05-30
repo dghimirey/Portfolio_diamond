@@ -4,7 +4,7 @@
  */
 
 import { motion } from 'motion/react';
-import { Mail, MapPin, Globe, ArrowLeft, Download, Printer } from 'lucide-react';
+import { Mail, MapPin, Globe, ArrowLeft, Printer, Download, Phone, Linkedin, Github } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 
 interface ResumeProps {
@@ -13,6 +13,10 @@ interface ResumeProps {
 
 export default function Resume({ onBack }: ResumeProps) {
   const handlePrint = () => {
+    window.print();
+  };
+
+  const handleDownload = () => {
     window.print();
   };
 
@@ -25,8 +29,8 @@ export default function Resume({ onBack }: ResumeProps) {
     >
       <style dangerouslySetInnerHTML={{__html: `
         @page {
-          size: A4 portrait;
-          margin: 10mm 12mm 10mm 12mm;
+          size: A4;
+          margin: 12mm 15mm;
         }
         @media print {
           body {
@@ -35,19 +39,26 @@ export default function Resume({ onBack }: ResumeProps) {
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
           }
-          html, body {
-            height: 100%;
-            overflow: hidden;
-            font-size: 11px;
+          * {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
           }
           .print-no-break {
             page-break-inside: avoid;
             break-inside: avoid;
           }
+          .print-hide {
+            display: none !important;
+          }
+        }
+        @media print and (max-width: 768px) {
+          .resume-grid {
+            display: block !important;
+          }
         }
       `}} />
 
-      <div className="max-w-4xl mx-auto print:max-w-none print:w-full">
+      <div className="max-w-5xl mx-auto print:max-w-none print:w-full">
         {/* Navigation / Actions (Hidden on print) */}
         <div className="flex items-center justify-between mb-12 print:hidden">
           <button 
@@ -58,10 +69,10 @@ export default function Resume({ onBack }: ResumeProps) {
             <span className="text-xs font-bold uppercase tracking-widest">Back to Portfolio</span>
           </button>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button 
               onClick={handlePrint}
-              className="flex items-center gap-2 bg-white hover:bg-cyan-400 text-black px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg"
+              className="flex items-center gap-2 bg-white hover:bg-zinc-100 text-black px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all shadow-md"
             >
               <Printer className="w-4 h-4" />
               <span>Print / Save PDF</span>
@@ -69,120 +80,157 @@ export default function Resume({ onBack }: ResumeProps) {
           </div>
         </div>
 
-        {/* Header */}
-        <header className="border-b-2 border-zinc-800 pb-10 mb-10 print:border-b print:border-zinc-200 print:pb-4 print:mb-5">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 print:flex-row print:justify-between print:items-end print:gap-4">
-            <div>
-              <h1 className="text-5xl font-black tracking-tighter uppercase mb-2 text-white print:text-zinc-900 print:text-3xl print:mb-1">{portfolioData.personal.name}</h1>
-              <p className="text-lg font-bold text-cyan-400 uppercase tracking-widest print:text-zinc-500 print:text-[11px] font-mono">{portfolioData.personal.role}</p>
+        {/* Resume Content */}
+        <div className="bg-white text-zinc-800 rounded-2xl overflow-hidden shadow-2xl print:shadow-none print:rounded-none">
+          {/* Header Section */}
+          <header className="bg-zinc-900 text-white px-8 pt-12 pb-10 print:bg-zinc-800 print:text-white print:px-6 print:pt-8 print:pb-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+              <div>
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-2 print:text-4xl">{portfolioData.personal.name}</h1>
+                <p className="text-xl text-cyan-400 font-medium tracking-wide print:text-cyan-300">{portfolioData.personal.role}</p>
+              </div>
+              <div className="text-right space-y-1.5 text-sm print:text-xs">
+                <div className="flex items-center gap-2 justify-end">
+                  <Mail className="w-4 h-4 text-cyan-400" />
+                  <a href={`mailto:${portfolioData.personal.email}`} className="hover:underline">
+                    {portfolioData.personal.email}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 justify-end">
+                                  <MapPin className="w-4 h-4 text-cyan-400" />
+                  <span>{portfolioData.personal.location}</span>
+                </div>
+                <div className="flex items-center gap-2 justify-end">
+                                  <Globe className="w-4 h-4 text-cyan-400" />
+                  <a 
+                    href={portfolioData.personal.portfolioUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    {portfolioData.personal.portfolioUrl?.replace(/https?:\/\/(www\.)?/, '').replace(/\/$/, '') || 'portfolio.diamondghimire.com.np'}
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="space-y-1.5 text-xs font-bold font-mono text-zinc-400 print:text-zinc-500 print:text-[10px] print:space-y-0.5 print:text-right">
-              <div className="flex items-center gap-2 justify-start md:justify-end print:justify-end">
-                <Mail className="w-4 h-4 text-cyan-400 print:text-zinc-400 print:w-3.5 print:h-3.5" />
-                <span>{portfolioData.personal.email}</span>
+          </header>
+
+          {/* Main Content */}
+          <div className="p-8 print:p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 print:gap-6 resume-grid">
+              {/* Left Column: Summary & Skills */}
+              <div className="md:col-span-1 space-y-6 print:space-y-4">
+                {/* Professional Summary */}
+                <section className="print-no-break">
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 border-b-2 border-zinc-200 pb-2 mb-4 print:text-xs">
+                    Professional Summary
+                  </h2>
+                  <p className="text-sm leading-relaxed text-zinc-700 print:text-xs">
+                    {portfolioData.personal.bio}
+                  </p>
+                </section>
+
+                {/* Core Competencies */}
+                <section className="print-no-break">
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 border-b-2 border-zinc-200 pb-2 mb-4 print:text-xs">
+                    Core Competencies
+                  </h2>
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-xs font-semibold text-zinc-800 mb-2 print:text-[11px]">Frontend Development</h3>
+                      <div className="flex flex-wrap gap-1.5">
+                        {portfolioData.skills.frontend.map(s => (
+                          <span key={s} className="px-2 py-1 bg-zinc-100 text-zinc-700 text-xs rounded-md print:bg-zinc-50 print:text-zinc-800 print:border print:border-zinc-200 print:text-[10px]">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-semibold text-zinc-800 mb-2 print:text-[11px]">Backend & Database</h3>
+                      <div className="flex flex-wrap gap-1.5">
+                        {portfolioData.skills.backend.map(s => (
+                          <span key={s} className="px-2 py-1 bg-zinc-100 text-zinc-700 text-xs rounded-md print:bg-zinc-50 print:text-zinc-800 print:border print:border-zinc-200 print:text-[10px]">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-semibold text-zinc-800 mb-2 print:text-[11px]">Tools & Technologies</h3>
+                      <div className="flex flex-wrap gap-1.5">
+                        {portfolioData.skills.tools.map(s => (
+                          <span key={s} className="px-2 py-1 bg-zinc-100 text-zinc-700 text-xs rounded-md print:bg-zinc-50 print:text-zinc-800 print:border print:border-zinc-200 print:text-[10px]">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
-              <div className="flex items-center gap-2 justify-start md:justify-end print:justify-end">
-                <MapPin className="w-4 h-4 text-blue-400 print:text-zinc-400 print:w-3.5 print:h-3.5" />
-                <span>{portfolioData.personal.location}</span>
-              </div>
-              <div className="flex items-center gap-2 justify-start md:justify-end print:justify-end font-medium">
-                <Globe className="w-4 h-4 text-indigo-400 print:text-zinc-400 print:w-3.5 print:h-3.5" />
-                <a 
-                  href={portfolioData.personal.portfolioUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:underline hover:text-white print:text-zinc-500 transition-colors"
-                >
-                  {portfolioData.personal.portfolioUrl?.replace(/https?:\/\/(www\.)?/, '').replace(/\/$/, '') || 'portfolio.diamondghimire.com.np'}
-                </a>
+
+              {/* Right Column: Experience & Education */}
+              <div className="md:col-span-2 space-y-6 print:space-y-4">
+                {/* Work Experience */}
+                <section className="print-no-break">
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 border-b-2 border-zinc-200 pb-2 mb-5 print:text-xs">
+                    Work Experience
+                  </h2>
+                  <div className="space-y-6">
+                    {portfolioData.experience.map((exp, i) => (
+                      <div key={i}>
+                        <div className="flex flex-wrap justify-between items-baseline mb-2">
+                          <h3 className="text-base font-bold text-zinc-800 print:text-sm">{exp.role}</h3>
+                          <span className="text-xs text-zinc-500 font-medium print:text-[10px]">{exp.period}</span>
+                        </div>
+                        <p className="text-sm font-medium text-cyan-600 mb-2 print:text-xs">{exp.company}</p>
+                        <p className="text-sm text-zinc-600 leading-relaxed print:text-xs">{exp.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Education */}
+                <section className="print-no-break">
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 border-b-2 border-zinc-200 pb-2 mb-5 print:text-xs">
+                    Education
+                  </h2>
+                  <div className="space-y-6">
+                    {portfolioData.education.map((edu, i) => (
+                      <div key={i}>
+                        <div className="flex flex-wrap justify-between items-baseline mb-2">
+                          <h3 className="text-base font-bold text-zinc-800 print:text-sm">{edu.degree}</h3>
+                          <span className="text-xs text-zinc-500 font-medium print:text-[10px]">{edu.period}</span>
+                        </div>
+                        <p className="text-sm font-medium text-cyan-600 mb-2 print:text-xs">{edu.institution}</p>
+                        <p className="text-sm text-zinc-600 leading-relaxed print:text-xs">{edu.details}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Additional Information */}
+                <section className="print-no-break">
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 border-b-2 border-zinc-200 pb-2 mb-4 print:text-xs">
+                    Professional Highlights
+                  </h2>
+                  <ul className="space-y-2 text-sm text-zinc-600 leading-relaxed list-disc list-inside print:text-xs">
+                    <li>Full-stack development expertise with modern JavaScript frameworks</li>
+                    <li>Strong focus on performance optimization and responsive design</li>
+                    <li>Experience with Agile methodologies and cross-functional collaboration</li>
+                    <li>Commitment to clean code practices and continuous learning</li>
+                  </ul>
+                </section>
               </div>
             </div>
           </div>
-        </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 print:grid-cols-3 print:gap-8">
-          {/* Left Column: Summary & Skills */}
-          <div className="md:col-span-1 space-y-10 print:space-y-5">
-            <section className="print-no-break">
-              <h2 className="text-xs font-black uppercase tracking-[0.3em] mb-4 print:mb-2 text-zinc-500 print:text-zinc-400 print:text-[10px]">Professional Summary</h2>
-              <p className="text-sm leading-relaxed text-zinc-400 print:text-zinc-600 font-semibold md:font-medium print:text-[10.5px] print:leading-relaxed">
-                {portfolioData.personal.bio} Dedicated to optimizing system performance and crafting intuitive digital interfaces.
-              </p>
-            </section>
-
-            <section className="print-no-break">
-              <h2 className="text-xs font-black uppercase tracking-[0.3em] mb-4 print:mb-2 text-zinc-500 print:text-zinc-400 print:text-[10px] font-bold">Core Expertise</h2>
-              <div className="space-y-6 print:space-y-3">
-                <div>
-                  <h3 className="text-[10px] font-black uppercase text-white mb-2.5 print:mb-1 print:text-zinc-900 tracking-wider print:text-[9px]">Development</h3>
-                  <div className="flex flex-wrap gap-1.5 print:gap-1">
-                    {portfolioData.skills.frontend.map(s => (
-                      <span key={s} className="px-2.5 py-1.5 bg-zinc-900 text-zinc-300 text-[9px] font-bold font-mono rounded-lg border border-white/5 print:bg-zinc-100 print:text-zinc-800 print:border-zinc-200 print:border print:px-1.5 print:py-0.5 print:text-[8px]">{s}</span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-[10px] font-black uppercase text-white mb-2.5 print:mb-1 print:text-zinc-900 tracking-wider print:text-[9px]">Backend</h3>
-                  <div className="flex flex-wrap gap-1.5 print:gap-1">
-                    {portfolioData.skills.backend.map(s => (
-                      <span key={s} className="px-2.5 py-1.5 bg-zinc-900 text-zinc-300 text-[9px] font-bold font-mono rounded-lg border border-white/5 print:bg-zinc-100 print:text-zinc-800 print:border-zinc-200 print:border print:px-1.5 print:py-0.5 print:text-[8px]">{s}</span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-[10px] font-black uppercase text-white mb-2.5 print:mb-1 print:text-zinc-900 tracking-wider print:text-[9px]">Tools</h3>
-                  <div className="flex flex-wrap gap-1.5 print:gap-1">
-                    {portfolioData.skills.tools.map(s => (
-                      <span key={s} className="px-2.5 py-1.5 bg-zinc-900 text-zinc-300 text-[9px] font-bold font-mono rounded-lg border border-white/5 print:bg-zinc-100 print:text-zinc-800 print:border-zinc-200 print:border print:px-1.5 print:py-0.5 print:text-[8px]">{s}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          {/* Right Column: Experience & Education */}
-          <div className="md:col-span-2 space-y-10 print:space-y-5">
-            <section className="print-no-break">
-              <h2 className="text-xs font-black uppercase tracking-[0.3em] mb-6 print:mb-3 text-zinc-500 print:text-zinc-400 print:text-[10px]">Work Experience</h2>
-              <div className="space-y-8 print:space-y-4">
-                {portfolioData.experience.map((exp, i) => (
-                  <div key={i} className="p-6 rounded-2xl bg-zinc-900/20 border border-white/5 print:bg-transparent print:border-0 print:p-0">
-                    <div className="flex justify-between items-start mb-2.5 print:mb-1">
-                      <h3 className="font-bold text-lg text-white print:text-zinc-900 print:text-[13px] truncate">{exp.role}</h3>
-                      <span className="text-[9px] font-bold font-mono bg-zinc-800 text-cyan-400 px-2.5 py-1 rounded-lg border border-white/5 print:bg-transparent print:text-zinc-500 print:border-0 print:p-0 print:text-[9px]">{exp.period}</span>
-                    </div>
-                    <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 print:mb-1 print:text-zinc-500 print:text-[9px]">{exp.company}</p>
-                    <p className="text-sm text-zinc-400 leading-relaxed font-semibold print:text-zinc-600 md:font-medium print:text-[10.5px] print:leading-relaxed">{exp.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="print-no-break">
-              <h2 className="text-xs font-black uppercase tracking-[0.3em] mb-6 print:mb-3 text-zinc-500 print:text-zinc-400 print:text-[10px]">Education</h2>
-              <div className="space-y-8 print:space-y-4">
-                {portfolioData.education.map((edu, i) => (
-                  <div key={i} className="p-6 rounded-2xl bg-zinc-900/20 border border-white/5 print:bg-transparent print:border-0 print:p-0">
-                    <div className="flex justify-between items-start mb-2 print:mb-1">
-                      <h3 className="font-bold text-lg text-white print:text-zinc-900 print:text-[13px] truncate">{edu.degree}</h3>
-                      <span className="text-[9px] font-bold font-mono bg-zinc-800/60 font-black text-zinc-300 px-2.5 py-1 rounded-lg print:bg-transparent print:text-zinc-500 print:p-0 print:text-[9px]">{edu.period}</span>
-                    </div>
-                    <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2 print:mb-1 print:text-zinc-500 print:text-[9px]">{edu.institution}</p>
-                    <p className="text-sm text-zinc-400 leading-relaxed font-semibold print:text-zinc-600 md:font-medium print:text-[10.5px] print:leading-relaxed">{edu.details}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </div>
+          {/* Footer */}
+          <footer className="bg-zinc-50 px-8 py-4 text-center text-xs text-zinc-500 border-t border-zinc-200 print:bg-white print:border-t print:mt-4">
+            <p>Professional Resume • {portfolioData.personal.name} • Updated 2026</p>
+          </footer>
         </div>
-
-        {/* Footer info for print */}
-        <footer className="mt-20 pt-10 border-t border-zinc-900 text-center hidden print:block print:mt-6 print:pt-3 print:border-zinc-200">
-          <p className="text-[10px] text-zinc-400 uppercase tracking-widest print:text-[8px] print:text-zinc-500">
-            Generated from Diamond Ghimire's Digital Portfolio • 2026
-          </p>
-        </footer>
       </div>
     </motion.div>
   );
