@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { portfolioData } from '../data/portfolio';
 
@@ -13,11 +14,39 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onViewResume }: NavbarProps) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    let prevScrollY = window.scrollY;
+    
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 12) {
+        setIsVisible(true);
+      } else if (currentScrollY > prevScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      
+      prevScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <motion.nav 
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl"
+      initial={{ y: -100, x: "-50%", opacity: 0 }}
+      animate={{ 
+        y: isVisible ? 0 : -100, 
+        x: "-50%",
+        opacity: isVisible ? 1 : 0 
+      }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-6 left-1/2 z-50 w-[95%] max-w-5xl"
     >
       <div className="bg-zinc-950/80 backdrop-blur-xl px-4 py-3 sm:px-8 rounded-2xl flex items-center justify-between border border-white/5">
         <div className="flex items-center gap-4">
