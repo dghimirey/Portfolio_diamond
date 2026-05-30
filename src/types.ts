@@ -58,6 +58,7 @@ export interface PortfolioData {
     avatar: string;
     email: string;
     vibe: string;
+    portfolioUrl?: string;
   };
   socials: Social[];
   projects: Project[];

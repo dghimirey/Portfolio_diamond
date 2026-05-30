@@ -26,7 +26,9 @@ export const portfolioData: PortfolioData = {
     avatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
 
-    email: "diamondghimire4141@gmail.com",
+    email: "contact@diamondghimire.com.np",
+
+    portfolioUrl: "https://portfolio.diamondghimire.com.np/",
 
     vibe: "Chess Learner • Creative Developer • Art Enthusiast"
   },
@@ -44,7 +46,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: "Email",
-      url: "mailto:diamondghimire4141@gmail.com",
+      url: "mailto:contact@diamondghimire.com.np",
       icon: Mail
     }
   ],
@@ -102,26 +104,27 @@ export const portfolioData: PortfolioData = {
     },
 
     {
-      id: "physics-simulator",
+      id: "haraiya-school",
 
-      title: "Physics Simulator",
+      title: "Haraiya Secondary School Website",
 
       description:
-        "An interactive web application for simulating physics concepts and experiments in a visual and engaging way.",
+        "The official, modern web platform for Haraiya Secondary School, facilitating public notices, admissions updates, calendar of events, and academic resources representation.",
 
       tech: [
-        "Vanilla JavaScript",
-        "Shell Scripting",
-        "Hardware APIs"
+        "React",
+        "Tailwind CSS",
+        "JavaScript",
+        "Framer Motion"
       ],
 
-      link: "#",
+      link: "https://haraiyasecondary.vercel.app/",
 
-      github: "#",
+      github: "https://github.com/dghimirey",
 
-      // Physics / science themed image
+      // School / building / desk themed image
       image:
-        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop",
 
       featured: false
     }

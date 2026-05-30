@@ -30,7 +30,7 @@ export default function Navbar({ onViewResume }: NavbarProps) {
         
         <div className="flex items-center gap-4 sm:gap-8">
           <nav className="hidden md:flex items-center gap-6 text-xs font-bold uppercase tracking-widest text-zinc-400">
-            {['Projects', 'Skills', 'Experience'].map((item) => (
+            {['Projects', 'Skills', 'GitHub', 'Experience'].map((item) => (
               <a 
                 key={item}
                 href={`#${item === 'Skills' ? 'expertise-skills' : item.toLowerCase()}`}
@@ -41,7 +41,7 @@ export default function Navbar({ onViewResume }: NavbarProps) {
             ))}
           </nav>
             <a 
-              href="mailto:shisir450@gmail.com"
+              href={`mailto:${portfolioData.personal.email}`}
               className="text-[10px] sm:text-xs bg-zinc-800 text-white px-5 py-2.5 rounded-xl font-bold uppercase tracking-widest hover:bg-zinc-700 transition-all"
             >
               Contact

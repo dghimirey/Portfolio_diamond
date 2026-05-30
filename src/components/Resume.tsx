@@ -63,7 +63,14 @@ export default function Resume({ onBack }: ResumeProps) {
               </div>
               <div className="flex items-center gap-2 justify-start md:justify-end">
                 <Globe className="w-4 h-4" />
-                <span>portfolio.diamond.dev</span>
+                <a 
+                  href={portfolioData.personal.portfolioUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  {portfolioData.personal.portfolioUrl?.replace(/https?:\/\/(www\.)?/, '').replace(/\/$/, '') || 'portfolio.diamondghimire.com.np'}
+                </a>
               </div>
             </div>
           </div>

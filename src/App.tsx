@@ -17,6 +17,7 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Footer from './components/Footer';
 import Resume from './components/Resume';
+import GithubActivity from './components/GithubActivity';
 import { portfolioData } from './data/portfolio';
 
 export default function App() {
@@ -63,6 +64,8 @@ export default function App() {
               <Skills />
             </section>
 
+            <GithubActivity />
+
             <Experience onViewResume={() => toggleView('resume')} />
 
             <section id="contact" className="py-20 relative">
@@ -108,7 +111,9 @@ export default function App() {
           </div>
         </motion.div>
       ) : (
-        <Resume key="resume" onBack={() => toggleView('portfolio')} />
+        <div key="resume">
+          <Resume onBack={() => toggleView('portfolio')} />
+        </div>
       )}
     </AnimatePresence>
   );
