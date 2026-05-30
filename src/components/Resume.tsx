@@ -1,3 +1,8 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import { motion } from 'motion/react';
 import { Mail, MapPin, Globe, ArrowLeft, Download, Printer } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
@@ -58,7 +63,7 @@ export default function Resume({ onBack }: ResumeProps) {
               </div>
               <div className="flex items-center gap-2 justify-start md:justify-end">
                 <Globe className="w-4 h-4" />
-                <span>portfolio.diamondghimire.com.np</span>
+                <span>portfolio.diamond.dev</span>
               </div>
             </div>
           </div>
