@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, ArrowUpRight, Search, Code, Globe2 } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Search, Code, Globe2, X, CheckCircle2 } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
+import { Project } from '../types';
 
 const container = {
   hidden: { opacity: 0 },
@@ -30,6 +31,19 @@ interface BentoGridProps {
 export default function BentoGrid({ onViewResume }: BentoGridProps) {
   const [activeFilter, setActiveFilter] = useState('All');
   const [showLiveOnly, setShowLiveOnly] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Lock body scroll when modal is active
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedProject]);
 
   // Extract unique technologies from all projects
   const allTechs = ['All', ...new Set(portfolioData.projects.flatMap(p => p.tech))];
@@ -50,13 +64,13 @@ export default function BentoGrid({ onViewResume }: BentoGridProps) {
         <div className="flex items-center gap-2 overflow-x-auto pb-3 md:pb-0 no-scrollbar max-w-full w-full md:w-auto">
           {allTechs.map((tech) => (
             <button
-              key={tech}
-              onClick={() => setActiveFilter(tech)}
-              className={`px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap active:scale-95 ${
-                activeFilter === tech 
-                  ? 'bg-cyan-500 text-black shadow-lg' 
-                  : 'bg-zinc-900 text-zinc-500 border border-white/5 hover:border-white/10 hover:text-white'
-              }`}
+               key={tech}
+               onClick={() => setActiveFilter(tech)}
+               className={`px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap active:scale-95 ${
+                 activeFilter === tech 
+                   ? 'bg-cyan-500 text-black shadow-lg' 
+                   : 'bg-zinc-900 text-zinc-500 border border-white/5 hover:border-white/10 hover:text-white'
+               }`}
             >
               {tech}
             </button>
@@ -108,7 +122,8 @@ export default function BentoGrid({ onViewResume }: BentoGridProps) {
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.4 }}
                 variants={item}
-                className={`${colSpan} ${rowSpan} bg-zinc-900/40 rounded-[2.5rem] border border-white/5 relative overflow-hidden group p-8 sm:p-10 flex flex-col justify-between shadow-2xl`}
+                onClick={() => setSelectedProject(project)}
+                className={`${colSpan} ${rowSpan} bg-zinc-900/40 rounded-[2.5rem] border border-white/5 relative overflow-hidden group p-8 sm:p-10 flex flex-col justify-between shadow-2xl cursor-pointer hover:border-cyan-500/20 active:scale-[0.995] transition-all`}
               >
                 {/* 1. FEATURED LAYOUT STYLE (Split Grid) */}
                 {isFeatured ? (
@@ -148,6 +163,7 @@ export default function BentoGrid({ onViewResume }: BentoGridProps) {
                             href={project.link} 
                             target="_blank" 
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-cyan-400 text-black text-[10px] sm:text-xs font-black uppercase tracking-widest rounded-2xl transition-all shadow-xl group/btn"
                           >
                             <ExternalLink className="w-4 h-4" />
@@ -160,6 +176,7 @@ export default function BentoGrid({ onViewResume }: BentoGridProps) {
                             href={project.github} 
                             target="_blank" 
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="flex items-center gap-2 px-6 py-3 bg-zinc-950 text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest rounded-2xl hover:bg-zinc-800 transition-colors border border-white/10"
                           >
                             <Github className="w-4 h-4 text-zinc-400" />
@@ -239,6 +256,7 @@ export default function BentoGrid({ onViewResume }: BentoGridProps) {
                           href={project.link} 
                           target="_blank" 
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="flex items-center gap-1.5 px-4 py-2 bg-white hover:bg-cyan-400 text-black text-[9px] font-black uppercase tracking-widest rounded-xl transition-all shadow group/btn"
                         >
                           Live
@@ -251,6 +269,7 @@ export default function BentoGrid({ onViewResume }: BentoGridProps) {
                           href={project.github} 
                           target="_blank" 
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="flex items-center gap-1.5 px-4 py-2 bg-zinc-950 hover:bg-zinc-900 text-white text-[9px] font-bold uppercase tracking-widest rounded-xl transition-colors border border-white/10"
                         >
                           <Github className="w-3 h-3 text-zinc-400" />
@@ -265,7 +284,137 @@ export default function BentoGrid({ onViewResume }: BentoGridProps) {
           })}
         </AnimatePresence>
       </motion.div>
+
+      {/* About Case Study Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="absolute inset-0 bg-zinc-950/80 backdrop-blur-md cursor-pointer"
+            />
+
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
+              className="relative w-full max-w-4xl bg-zinc-900 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl z-10 flex flex-col max-h-[85vh]"
+            >
+              <div className="overflow-y-auto no-scrollbar flex-1">
+                {/* Image Banner */}
+                <div className="relative h-[200px] sm:h-[280px] w-full overflow-hidden shrink-0">
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent z-10" />
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  
+                  {/* Close button inside image */}
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="absolute top-6 right-6 z-20 w-10 h-10 rounded-full bg-zinc-950/80 backdrop-blur border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-all active:scale-95 shadow-lg cursor-pointer"
+                    aria-label="Close modal"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+
+                  <div className="absolute bottom-6 left-6 z-25 flex items-center gap-1.5 bg-zinc-950/80 backdrop-blur px-3 py-1.5 rounded-full border border-white/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-300">Project Profile</span>
+                  </div>
+                </div>
+
+                {/* Info block */}
+                <div className="p-8 sm:p-10 space-y-8">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                    <div className="space-y-3 flex-1">
+                      <h2 className="text-3xl sm:text-4xl font-serif italic font-black tracking-tight text-white leading-tight">
+                        {selectedProject.title}
+                      </h2>
+                      
+                      {/* Tech stack tags */}
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {selectedProject.tech.map(t => (
+                          <span key={t} className="px-3 py-1 bg-white/5 border border-white/5 rounded-xl text-[9px] font-mono text-zinc-300 uppercase font-semibold">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CTA Actions */}
+                    <div className="flex flex-wrap items-center gap-3 shrink-0 pt-2 md:pt-0">
+                      {selectedProject.link !== '#' && (
+                        <a
+                          href={selectedProject.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-6 py-3.5 bg-white hover:bg-cyan-400 text-black text-[10px] font-black uppercase tracking-widest rounded-2xl transition-all shadow-xl group/modal-btn"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Launch System
+                          <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/modal-btn:opacity-100 group-hover/modal-btn:translate-x-0 transition-all font-bold" />
+                        </a>
+                      )}
+                      {selectedProject.github && selectedProject.github !== '#' && (
+                        <a
+                          href={selectedProject.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-6 py-3.5 bg-zinc-950 text-white text-[10px] font-bold uppercase tracking-widest rounded-2xl hover:bg-zinc-800 transition-colors border border-white/10"
+                        >
+                          <Github className="w-4 h-4 text-zinc-400" />
+                          Codebase
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="w-full h-[1px] bg-white/5" />
+
+                  {/* Descriptions layout */}
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10">
+                    <div className="md:col-span-7 space-y-4">
+                      <h3 className="text-xs font-black uppercase tracking-widest text-cyan-400">About the Project</h3>
+                      <p className="text-zinc-300 text-sm sm:text-base leading-relaxed font-semibold md:font-medium">
+                        {selectedProject.longDescription || selectedProject.description}
+                      </p>
+                    </div>
+
+                    <div className="md:col-span-5 space-y-4">
+                      <h3 className="text-xs font-black uppercase tracking-widest text-blue-400">Key Features</h3>
+                      {selectedProject.features && selectedProject.features.length > 0 ? (
+                        <ul className="space-y-4">
+                          {selectedProject.features.map((feature, i) => (
+                            <li key={i} className="flex items-start gap-2.5">
+                              <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                              <span className="text-zinc-400 text-xs sm:text-sm font-semibold leading-relaxed">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
+                          <p className="text-xs text-zinc-500 italic">Full architecture summaries and database models are updated on GitHub periodically.</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
+
 

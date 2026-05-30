@@ -74,7 +74,16 @@ export const portfolioData: PortfolioData = {
       image:
         "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
 
-      featured: true
+      featured: true,
+
+      longDescription: "edVance is a holistic school administration system. It consolidates academic data, attendance logs, performance analytics, and administrative tools into a cohesive web portal to foster effective synergy between educators, students, and parents.",
+
+      features: [
+        "Real-time analytics for automated student performance profiling",
+        "Digital daily attendance tracker with micro-alerts",
+        "Parent-teacher communication hub for live collaboration",
+        "Integrated class schedule manager and notice broadcast panel"
+      ]
     },
 
     {
@@ -99,7 +108,16 @@ export const portfolioData: PortfolioData = {
       image:
         "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop",
 
-      featured: true
+      featured: true,
+
+      longDescription: "FitBeat utilizes interactive habit loops and strategic reward gamification to help users sustain consistent physical fitness habits and daily mental clarity practices securely.",
+
+      features: [
+        "Custom routine builder with interactive progress meters",
+        "Streak protection engine to visualize activity consistency",
+        "Aesthetic light / dark ambient environments",
+        "Markdown-ready journaling system with reward points tracking"
+      ]
     },
 
     {
@@ -125,7 +143,16 @@ export const portfolioData: PortfolioData = {
       image:
         "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop",
 
-      featured: false
+      featured: false,
+
+      longDescription: "The official web portal for Haraiya Secondary School, developed as an open administrative hub. It enables direct delivery of student notices, admission guidelines, downloadable materials, and upcoming calendar schedules.",
+
+      features: [
+        "Integrated digital notice board with instant search filters",
+        "Mobile-first admission guides and downloadable PDF resource library",
+        "Comprehensive faculty directory with detailed contact channels",
+        "Interactive event syllabus tracker and institutional timeline highlights"
+      ]
     }
   ],
 

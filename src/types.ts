@@ -14,6 +14,8 @@ export interface Project {
   github?: string;
   image: string;
   featured: boolean;
+  longDescription?: string;
+  features?: string[];
 }
 
 export interface Education {
