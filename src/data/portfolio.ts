@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import {
   Github,
   Linkedin,
@@ -23,7 +18,7 @@ export const portfolioData: PortfolioData = {
     bio: "Student at Bhairahawa Multiple Campus, passionate about building meaningful digital experiences through software development and modern technologies.",
     
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
-    email: "diamondghimire4141@gmail.com",
+    email: "contact@diamondghimire.com.np",
     vibe: "Chess Learner • Creative Developer • Art Enthusiast"
   },
 
@@ -40,7 +35,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: "Email",
-      url: "mailto:diamondghimire4141@gmail.com",
+      url: "mailto:contact@diamondghimire.com.np",
       icon: Mail
     }
   ],
