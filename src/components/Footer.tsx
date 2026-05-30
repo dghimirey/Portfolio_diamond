@@ -6,6 +6,8 @@
 import { Mail, Github, Linkedin, ArrowUp } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 
+const logoImg = "/logo.jpg";
+
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -16,9 +18,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="text-center md:text-left">
           <div className="flex items-center gap-3 mb-6 justify-center md:justify-start">
-             <div className="w-10 h-10 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center font-bold text-lg shadow-lg shadow-cyan-500/20 shrink-0">
-              D
-            </div>
+             <div className="w-10 h-10 rounded-full overflow-hidden border border-cyan-500/30 flex items-center justify-center shadow-lg shadow-cyan-500/10 shrink-0 bg-zinc-900">
+               <img 
+                 src={logoImg} 
+                 alt="Diamond Ghimire" 
+                 className="w-full h-full object-cover"
+                 referrerPolicy="no-referrer"
+               />
+             </div>
             <h3 className="text-xl font-bold tracking-tight uppercase">Diamond Ghimire</h3>
           </div>
           <p className="text-zinc-500 text-[10px] max-w-sm leading-relaxed mb-8 uppercase tracking-widest font-bold">

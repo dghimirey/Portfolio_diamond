@@ -6,6 +6,8 @@
 import { motion } from 'motion/react';
 import { portfolioData } from '../data/portfolio';
 
+const logoImg = "/logo.jpg";
+
 interface NavbarProps {
   onViewResume: () => void;
 }
@@ -19,8 +21,13 @@ export default function Navbar({ onViewResume }: NavbarProps) {
     >
       <div className="bg-zinc-950/80 backdrop-blur-xl px-4 py-3 sm:px-8 rounded-2xl flex items-center justify-between border border-white/5">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center font-bold text-xl shadow-lg shadow-cyan-500/20 shrink-0">
-            D
+          <div className="w-10 h-10 rounded-full overflow-hidden border border-cyan-500/30 flex items-center justify-center shadow-lg shadow-cyan-500/10 shrink-0 bg-zinc-900">
+            <img 
+              src={logoImg} 
+              alt="Diamond Ghimire" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
           </div>
           <div className="leading-none hidden sm:block">
             <h1 className="text-sm font-bold tracking-tight uppercase">{portfolioData.personal.name}</h1>
@@ -30,15 +37,22 @@ export default function Navbar({ onViewResume }: NavbarProps) {
         
         <div className="flex items-center gap-4 sm:gap-8">
           <nav className="hidden md:flex items-center gap-6 text-xs font-bold uppercase tracking-widest text-zinc-400">
-            {['Projects', 'Skills', 'GitHub', 'Experience'].map((item) => (
-              <a 
-                key={item}
-                href={`#${item === 'Skills' ? 'expertise-skills' : item.toLowerCase()}`}
-                className="hover:text-white transition-colors"
-              >
-                {item}
-              </a>
-            ))}
+            {['Projects', 'Skills', 'GitHub', 'Experience'].map((item) => {
+              let hrefTarget = `#${item.toLowerCase()}`;
+              if (item === 'Projects') hrefTarget = '#projects-grid';
+              if (item === 'Skills') hrefTarget = '#expertise-skills';
+              
+              return (
+                <a 
+                  key={item}
+                  href={hrefTarget}
+                  className="hover:text-white transition-colors relative duration-300 py-1 group"
+                >
+                  {item}
+                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-cyan-500 transition-all duration-300 group-hover:w-full" />
+                </a>
+              );
+            })}
           </nav>
             <a 
               href={`mailto:${portfolioData.personal.email}`}

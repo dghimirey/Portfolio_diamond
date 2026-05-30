@@ -23,8 +23,7 @@ export const portfolioData: PortfolioData = {
     bio: "Student at Bhairahawa Multiple Campus, passionate about building meaningful digital experiences through software development and modern technologies.",
     
     // Better professional profile image
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
+    avatar: "/logo.jpg",
 
     email: "contact@diamondghimire.com.np",
 
