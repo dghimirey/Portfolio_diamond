@@ -29,7 +29,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold tracking-tight uppercase">Diamond Ghimire</h3>
           </div>
           <p className="text-zinc-500 text-[10px] max-w-sm leading-relaxed mb-8 uppercase tracking-widest font-bold">
-            Frontend Architecture • Backend Logic • Nepal
+            Kanchan -5, Rupandehi, Nepal
           </p>
           <div className="flex items-center gap-8 justify-center md:justify-start text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
             {portfolioData.socials.map((social) => (
