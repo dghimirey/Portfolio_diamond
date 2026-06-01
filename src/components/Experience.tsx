@@ -45,7 +45,7 @@ export default function Experience({ onViewResume }: ExperienceProps) {
             onClick={onViewResume}
             className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors border-b border-white/10 pb-1"
           >
-            Digital Curriculum Vitae
+            Resume
           </button>
         </div>
 
@@ -59,7 +59,7 @@ export default function Experience({ onViewResume }: ExperienceProps) {
         >
           {/* Work Experience */}
           <div className="space-y-12">
-            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-zinc-700 mb-8">Professional Experience</h3>
+            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-zinc-700 mb-8">Experience</h3>
             {portfolioData.experience.map((exp, i) => (
               <motion.div 
                 key={i} 
@@ -87,7 +87,7 @@ export default function Experience({ onViewResume }: ExperienceProps) {
 
           {/* Education */}
           <div className="space-y-12">
-            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-zinc-700 mb-8">Academic Foundation</h3>
+            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-zinc-700 mb-8">Academic Background</h3>
             {portfolioData.education.map((edu, i) => (
               <motion.div 
                 key={i} 
