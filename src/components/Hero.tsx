@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, ArrowRight, Sparkles, Clock } from 'lucide-react';
@@ -19,7 +14,7 @@ export default function Hero({ onViewResume }: HeroProps) {
     const updateTime = () => {
       const now = new Date();
       const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      const nepalOffset = 5.75 * 3600000; // Nepal is UTC + 5:45
+      const nepalOffset = 5.75 * 3600000;
       const nepalDate = new Date(utc + nepalOffset);
       
       const timeStr = nepalDate.toLocaleTimeString('en-US', {
